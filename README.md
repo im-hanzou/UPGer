@@ -1,5 +1,7 @@
 # UPGer | CVE-2022-4060 - User Post Gallery
-<img src="https://github.com/im-hanzou/UPGer/blob/main/ipger.png" width=600></img><br>Automatic Mass Tool for checking vulnerability in CVE-2022-4060 - WordPress Plugin : User Post Gallery <= 2.19 - Unauthenticated RCE<br>Using GNU Parallel. You must have parallel for run this tool.<br>
+Automatic Mass Tool for checking vulnerability in CVE-2022-4060 - WordPress Plugin : User Post Gallery <= 2.19 - Unauthenticated RCE<br><br>
+<img src="https://github.com/im-hanzou/UPGer/blob/main/ipger.png" width=600></img><br>
+- Using GNU Parallel. You must have parallel for run this tool.<br>
 - <b>If you found error like "$'\r': command not found" just do "dos2unix upger.sh"</b>
 # Install Parallel
 - Linux : <code>apt-get install parallel -y</code><br>
